@@ -1,9 +1,15 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
+import os
 
-print("Server started....")
+load_dotenv()
+
+ENV = os.getenv('ENV')
+
+print(f"Server started.... {ENV}")
 
 app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": f"Hello World {ENV}"}
